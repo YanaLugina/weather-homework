@@ -36,8 +36,7 @@ Widget _myWeatherForecast() {
         children: <Widget> [
           _search(),
           _cityAndDate(),
-      /* Row(),
-      Row(),*/
+          _temperature(),
           Text('7-DAY WEATHER FORECAST'),
           /*ListView()*/
         ],
@@ -108,5 +107,44 @@ Column _cityAndDate() {
         ),
       ),
     ],
+  );
+}
+
+Padding _temperature() {
+  return Padding(
+    padding: EdgeInsets.fromLTRB(0.0, 35.0, 0.0, 35.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget> [
+        Icon(
+          Icons.wb_sunny,
+          color: Colors.white,
+          size: 70.0,
+        ),
+        SizedBox(
+          width: 15.0,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              '14 * F',
+              style: TextStyle(
+                fontSize: 26.0,
+                color: Colors.white,
+              ),
+            ),
+            Text(
+              'LIGHT SNOW',
+              style: TextStyle(
+                fontSize: 12.0,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
   );
 }
