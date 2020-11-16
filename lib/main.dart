@@ -37,6 +37,7 @@ Widget _myWeatherForecast() {
           _search(),
           _cityAndDate(),
           _temperature(),
+          _snowballs(),
           Text('7-DAY WEATHER FORECAST'),
           /*ListView()*/
         ],
@@ -147,4 +148,48 @@ Padding _temperature() {
       ],
     ),
   );
+}
+
+Container _snowballs () {
+  return Container(
+    width: 200.0,
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget> [
+        Snowballs(5),
+        Snowballs(3),
+        Snowballs(20),
+      ],
+    ),
+  );
+}
+
+class Snowballs extends StatelessWidget {
+  final int degree;
+
+  Snowballs(this.degree);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget> [
+        Icon(Icons.coronavirus, color: Colors.white,),
+        Text(
+          '$degree',
+          style: TextStyle(
+            fontSize: 14.0,
+            color: Colors.white,
+          ),
+        ),
+        Text(
+          '%',
+          style: TextStyle(
+            fontSize: 14.0,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    );
+  }
 }
