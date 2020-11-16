@@ -36,8 +36,8 @@ Widget _myWeatherForecast() {
         children: <Widget> [
           _search(),
           _cityAndDate(),
-      /* Row(),
-      Row(),*/
+          _temperature(),
+          _snowballs(),
           Text('7-DAY WEATHER FORECAST'),
           /*ListView()*/
         ],
@@ -109,4 +109,87 @@ Column _cityAndDate() {
       ),
     ],
   );
+}
+
+Padding _temperature() {
+  return Padding(
+    padding: EdgeInsets.fromLTRB(0.0, 35.0, 0.0, 35.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget> [
+        Icon(
+          Icons.wb_sunny,
+          color: Colors.white,
+          size: 70.0,
+        ),
+        SizedBox(
+          width: 15.0,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              '14 * F',
+              style: TextStyle(
+                fontSize: 26.0,
+                color: Colors.white,
+              ),
+            ),
+            Text(
+              'LIGHT SNOW',
+              style: TextStyle(
+                fontSize: 12.0,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+Container _snowballs () {
+  return Container(
+    width: 200.0,
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget> [
+        Snowballs(5),
+        Snowballs(3),
+        Snowballs(20),
+      ],
+    ),
+  );
+}
+
+class Snowballs extends StatelessWidget {
+  final int degree;
+
+  Snowballs(this.degree);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget> [
+        Icon(Icons.coronavirus, color: Colors.white,),
+        Text(
+          '$degree',
+          style: TextStyle(
+            fontSize: 14.0,
+            color: Colors.white,
+          ),
+        ),
+        Text(
+          '%',
+          style: TextStyle(
+            fontSize: 14.0,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    );
+  }
 }
