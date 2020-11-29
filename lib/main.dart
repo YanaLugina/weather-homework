@@ -31,15 +31,15 @@ Widget _myWeatherForecast() {
     color: Colors.red,
     child: Padding(
       padding: EdgeInsets.all(10.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: ListView(
+        itemExtent: 100,
+        scrollDirection: Axis.vertical,
         children: <Widget> [
           _search(),
           _cityAndDate(),
           _temperature(),
           _snowballs(),
-          Text('7-DAY WEATHER FORECAST'),
-          /*ListView()*/
+          MyWeatherForWeek(),
         ],
       ),
     ),
@@ -113,7 +113,7 @@ Column _cityAndDate() {
 
 Padding _temperature() {
   return Padding(
-    padding: EdgeInsets.fromLTRB(0.0, 35.0, 0.0, 35.0),
+    padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 15.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget> [
@@ -152,16 +152,27 @@ Padding _temperature() {
 
 Container _snowballs () {
   return Container(
-    width: 200.0,
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget> [
-        Snowballs(5),
-        Snowballs(3),
-        Snowballs(20),
+    width: 100.0,
+    child: Column(
+      children: <Widget>[
+        SizedBox(
+          height: 15.0,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget> [
+            Snowballs(5),
+            Snowballs(3),
+            Snowballs(20),
+          ],
+        ),
+        SizedBox(
+          height: 15.0,
+        ),
       ],
     ),
+
   );
 }
 
@@ -191,5 +202,38 @@ class Snowballs extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+
+Widget _myWeatherForWeek() {
+  final List<String> entries = <String>['A', 'B', 'C'];
+  // final List<int> colorCodes = <int>[600, 500, 100];
+  // final List<String> items = List<String>.generate(10, (i) => 'item $i');
+  final List<Widget> items = List<Widget>.generate(
+      10, (i) => Text('Sender $i')
+  );
+
+  return ListView.builder(
+      padding: const EdgeInsets.all(8),
+      scrollDirection: Axis.horizontal,
+      itemExtent: 150,
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        final item = items[index];
+        return Card(
+          child: ListTile(
+              title: item
+          ),
+        );
+      },
+  );
+}
+
+
+class MyWeatherForWeek extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return _myWeatherForWeek();
   }
 }
