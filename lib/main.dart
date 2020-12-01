@@ -152,7 +152,7 @@ Padding _temperature() {
 
 Container _snowballs () {
   return Container(
-    width: 100.0,
+    width: 50.0,
     child: Column(
       children: <Widget>[
         SizedBox(
@@ -160,7 +160,7 @@ Container _snowballs () {
         ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget> [
             Snowballs(5),
             Snowballs(3),
@@ -205,31 +205,72 @@ class Snowballs extends StatelessWidget {
   }
 }
 
+Widget _temperWidget (temp, day) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: <Widget>[
+      Text(
+        '$day',
+        style: TextStyle(color: Colors.white),
+      ),
+      SizedBox(
+        height: 5.0,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget> [
+          Text(
+            '$temp * F',
+            style: TextStyle(color: Colors.white, ),
+          ),
+          SizedBox(
+            width: 10.0,
+          ),
+          Icon(
+            Icons.wb_sunny,
+            color: Colors.white,
+            size: 30.0,
+          ),
+        ],
+      )
+    ],
+  );
+}
 
 Widget _myWeatherForWeek() {
-  final List<String> entries = <String>['A', 'B', 'C'];
-  // final List<int> colorCodes = <int>[600, 500, 100];
-  // final List<String> items = List<String>.generate(10, (i) => 'item $i');
-  final List<Widget> items = List<Widget>.generate(
-      10, (i) => Text('Sender $i')
-  );
+  final List <List> dayWeek = <List>[
+    [ 'Monday', '5'],
+    [ 'Tuesday', '7'],
+    [ 'Wednesday', '11'],
+    [ 'Thursday', '2'],
+    [ 'Friday', '10'],
+    [ 'Saturday', '4'],
+    [ 'Sunday', '4']
+  ];
+
+  final List<Widget> tempers = List<Widget>.generate(
+    dayWeek.length, (i) => _temperWidget(dayWeek[i][1], dayWeek[i][0]),
+    );
 
   return ListView.builder(
       padding: const EdgeInsets.all(8),
       scrollDirection: Axis.horizontal,
       itemExtent: 150,
-      itemCount: items.length,
+      itemCount: tempers.length,
       itemBuilder: (context, index) {
-        final item = items[index];
+        final temper = tempers[index];
         return Card(
-          child: ListTile(
-              title: item
+          color: Colors.white30,
+          child: Center(
+            child: ListTile(
+              title: temper,
+            ),
           ),
         );
       },
   );
 }
-
 
 class MyWeatherForWeek extends StatelessWidget {
   @override
