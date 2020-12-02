@@ -152,7 +152,6 @@ Padding _temperature() {
 
 Container _snowballs () {
   return Container(
-    width: 50.0,
     child: Column(
       children: <Widget>[
         SizedBox(
